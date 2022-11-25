@@ -1,0 +1,24 @@
+# font used by i3 for titles and bars
+font pango:Hack 8
+
+#start of bar section
+bar {
+    position top
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    colors {
+        # bar background color
+        background $bg
+        # text color used for blocks that do not have a color specified.
+        statusline $yellow
+        # workspaces section            
+        #                    border  backgr. text
+        focused_workspace    $aqua $green $black
+        inactive_workspace   $darkgray $black $orange
+        active_workspace     $darkgray $black $orange
+        urgent_workspace     $red $red $bg
+    }
+}
+#end of bar section
+
+#start of window title bars & borders section
+
