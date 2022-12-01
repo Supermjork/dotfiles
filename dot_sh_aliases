@@ -1,0 +1,141 @@
+alias ebuild='nocorrect ebuild'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias hpodder='nocorrect hpodder'
+alias man='nocorrect man'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias sudo='nocorrect sudo'
+
+setopt correct_all
+
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt auto_cd
+setopt multios
+
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -g ......='../../../../..'
+
+alias -- -='cd -'
+
+alias l='ls -lah'
+alias ls="ls -F --color=always"
+alias ll="ls -lh"
+alias la="ls -lAh"
+alias lsr="ls -lSr"
+alias grep="grep --color=always ${GREP_OPTIONS}"
+alias mv="mv -i"
+
+alias ncdu="ncdu --color=dark"
+
+alias monitor="tmux new -A -s monitor"
+
+alias ':q'='exit'
+
+alias engage="play -n -c1 synth whitenoise band -n 100 20 band -n 50 20 gain +25  fade h 1 864000 1"
+alias engage-high="play -c2 -n synth whitenoise band -n 100 24 band -n 300 100 gain +20"
+
+alias astyle-c="astyle -t4 -L -m2 -f -p -U -k3 -W3 --brackets=stroustrup -j -O -xC80 -z2"
+
+if [[ -x "$(which pacaur)" ]]; then
+    upgrade() {
+        pacaur -Syu "$@"
+    }
+elif [[ -x "$(which trizen)" ]]; then
+    upgrade() {
+        trizen -Syu "$@"
+    }
+elif [[ -x "$(which pacman)" ]]; then
+    upgrade() {
+        sudo pacman -Syu "$@"
+    }
+fi
+
+# Keybinds
+
+# emacs mode
+bindkey -e
+
+bindkey '^r' history-incremental-search-backward
+
+if [[ "${terminfo[kpp]}" != "" ]]; then
+    bindkey "${terminfo[kpp]}" up-line-or-history       # [PageUp]
+fi
+if [[ "${terminfo[knp]}" != "" ]]; then
+    bindkey "${terminfo[knp]}" down-line-or-history     # [PageDown]
+fi
+
+# [Up-Arrow]
+if [[ "${terminfo[kcuu1]}" != "" ]]; then
+    if typeset -f history-substring-search-up > /dev/null; then
+        bindkey "${terminfo[kcuu1]}" history-substring-search-up
+    elif typeset -f directory-history-search-backward > /dev/null; then
+        zle -N directory-history-search-backward
+        bindkey "${terminfo[kcuu1]}" directory-history-search-backward
+    else
+        autoload -U up-line-or-beginning-search
+        zle -N up-line-or-beginning-search
+        bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+    fi
+fi
+bindkey "^[[A" history-substring-search-up
+# [Down-Arrow]
+if [[ "${terminfo[kcud1]}" != "" ]]; then
+    if typeset -f history-substring-search-down > /dev/null; then
+        bindkey "${terminfo[kcud1]}" history-substring-search-down
+    elif typeset -f directory-history-search-forward > /dev/null; then
+        zle -N directory-history-search-forward
+        bindkey "${terminfo[kcud1]}" directory-history-search-forward
+    else
+        autoload -U down-line-or-beginning-search
+        zle -N down-line-or-beginning-search
+        bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+    fi
+fi
+bindkey "^[[B" history-substring-search-down
+
+if [[ "${terminfo[khome]}" != "" ]]; then
+    bindkey "${terminfo[khome]}" beginning-of-line
+fi
+if [[ "${terminfo[kend]}" != "" ]]; then
+    bindkey "${terminfo[kend]}"  end-of-line
+fi
+
+bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow]
+bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow]
+
+if [[ "${terminfo[kcbt]}" != "" ]]; then
+    bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab]
+fi
+
+bindkey '^?' backward-delete-char                     # [Backspace]
+if [[ "${terminfo[kdch1]}" != "" ]]; then
+    bindkey "${terminfo[kdch1]}" delete-char            # [Delete]
+else
+    bindkey "^[[3~" delete-char
+    bindkey "^[3;5~" delete-char
+    bindkey "\e[3~" delete-char
+fi
+
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+
+# file rename magick
+bindkey "^[m" copy-prev-shell-word
+
+# Fix weird sequence that rxvt produces
+bindkey -s '^[[Z' '\t'
+
+# vim:ft=zsh
+alias rsync-mv='rsync -aiv --no-g --remove-source-files'
+alias spotify-light=~/scripts/spot-light.sh 
+alias spotify-dark=~/scripts/spot-dark.sh
+alias yt-mp3='yt-dlp -x -f bestaudio'
+alias work='tmux attach-session -t work'
+alias tmux-monitor='tmux attach-session -t monitor'
