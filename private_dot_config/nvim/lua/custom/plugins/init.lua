@@ -19,5 +19,10 @@ return {
       require "custom.plugins.null-ls"
     end,
   },
-  ["simrat39/rust-tools.nvim"]= {}
+  ["simrat39/rust-tools.nvim"] = {},
+  ["goolord/alpha-nvim"] = {
+    config = function()
+      require'alpha'.setup(require'alpha.themes.dashbaoard'.config)
+    end,
+  }
 	}
