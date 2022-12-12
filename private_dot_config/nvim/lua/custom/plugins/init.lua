@@ -1,4 +1,3 @@
-
 return {
 	["folke/trouble.nvim"] = {
 		config = function()
@@ -20,9 +19,4 @@ return {
     end,
   },
   ["simrat39/rust-tools.nvim"] = {},
-  ["goolord/alpha-nvim"] = {
-    config = function()
-      require'alpha'.setup(require'alpha.themes.dashbaoard'.config)
-    end,
-  }
 	}
