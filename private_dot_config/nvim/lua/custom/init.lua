@@ -2,6 +2,8 @@
 -- load your options globals, autocmds here or anything .__.
 -- you can even override default options here (core/options.lua)
 local rt = require("rust-tools")
+vim.g.vimtex_view_method = 'zathura'
+vim.g.vimtext_compiler_method = 'generic'
 
 
 rt.setup({

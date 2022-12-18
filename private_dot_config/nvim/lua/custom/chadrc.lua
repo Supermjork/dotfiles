@@ -2,7 +2,7 @@
 
 local M = {}
 vim.g.vimtex_view_method = 'zathura'
-vim.g.vimtext_compiler_method = 'pdflatex'
+vim.g.vimtext_compiler_method = 'generic'
 
 
 -- make sure you maintain the structure of `core/default_config.lua` here,
