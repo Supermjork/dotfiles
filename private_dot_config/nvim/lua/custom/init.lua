@@ -3,6 +3,7 @@
 -- you can even override default options here (core/options.lua)
 local rt = require("rust-tools")
 
+
 rt.setup({
   server = {
     on_attach = function(_, bufnr)

@@ -19,4 +19,5 @@ return {
     end,
   },
   ["simrat39/rust-tools.nvim"] = {},
+  ["lervag/vimtex"] = {}
 	}
