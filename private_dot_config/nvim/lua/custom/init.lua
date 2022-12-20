@@ -4,7 +4,7 @@
 local rt = require("rust-tools")
 vim.g.vimtex_view_method = 'zathura'
 vim.g.vimtext_compiler_method = 'generic'
-
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 rt.setup({
   server = {
