@@ -3,7 +3,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "clangd","tsserver","angularls","rust_analyzer","rustfmt","r_language_server","shellcheck",}
+local servers = { "html", "cssls", "clangd","tsserver","angularls","rust_analyzer","r_language_server","shellcheck",}
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -45,7 +45,3 @@ require('lspconfig')['tsserver'].setup{
 --         }
 --     }
 -- }
-require('lspconfig')['rustfmt'].setup{
-    on_attach = on_attach,
-    flags = lsp_flags,
-    }
