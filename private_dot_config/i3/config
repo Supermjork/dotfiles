@@ -77,7 +77,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+y split h
+bindsym $mod+shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -106,43 +106,45 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $Terminal "1"
 set $Browsers "2"
-set $Youtube "3"
+set $Code "3"
 set $IRC "4"
-set $Game "5"
-set $College "6"
-set $Mail "7"
+set $Media "5"
+set $Reading "6"
+set $Youtube "7"
 set $Steam "8"
 set $Vm "9"
-set $10 "10"
-set $Work "11"
+set $Notes "10"
+set $Game "11"
+set $Mail "12"
+
 
 
 # switch to workspace
 bindsym $mod+1 workspace number $Terminal
 bindsym $mod+2 workspace number $Browsers
-bindsym $mod+3 workspace number $Youtube
+bindsym $mod+3 workspace number $Code
 bindsym $mod+4 workspace number $IRC
-bindsym $mod+5 workspace number $Game
-bindsym $mod+6 workspace number $College
-bindsym $mod+7 workspace number $Mail
-bindsym $mod+c workspace number $College
+bindsym $mod+5 workspace number $Media
+bindsym $mod+6 workspace number $Reading
+bindsym $mod+7 workspace number $Youtube
+bindsym $mod+c workspace number $Reading
 bindsym $mod+8 workspace number $Steam
 bindsym $mod+g workspace number $Game
 bindsym $mod+9 workspace number $Vm
 bindsym $mod+m workspace number $Mail
-bindsym $mod+0 workspace number $10
+bindsym $mod+0 workspace number $Reading
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $Terminal
 bindsym $mod+Shift+2 move container to workspace number $Browsers
-bindsym $mod+Shift+3 move container to workspace number $Youtube
+bindsym $mod+Shift+3 move container to workspace number $Code
 bindsym $mod+Shift+4 move container to workspace number $IRC
-bindsym $mod+Shift+5 move container to workspace number $Game
-bindsym $mod+Shift+6 move container to workspace number $College
-bindsym $mod+Shift+7 move container to workspace number $Mail
+bindsym $mod+Shift+5 move container to workspace number $Media
+bindsym $mod+Shift+6 move container to workspace number $Reading
+bindsym $mod+Shift+7 move container to workspace number $Youtube
 bindsym $mod+Shift+8 move container to workspace number $Steam
 bindsym $mod+Shift+9 move container to workspace number $Vm
-bindsym $mod+Shift+0 move container to workspace number $10
+bindsym $mod+Shift+0 move container to workspace number $Reading
 bindsym $mod+Shift+g move container to workspace number $Game
 bindsym $mod+Shift+m move container to workspace number $Mail
 
@@ -187,15 +189,16 @@ bindsym Shift+l workspace next;workspace next
 # My finger do not like reaching for the numbers
 bindsym a workspace number $Terminal
 bindsym s workspace number $Browsers
-bindsym d workspace number $Youtube
+bindsym d workspace number $Code
 bindsym f workspace number $IRC
 bindsym g workspace number $Game
-bindsym c workspace number $College
+bindsym c workspace number $Notes
 bindsym q workspace number $Steam
 bindsym v workspace number $Vm
 bindsym m workspace number $Mail
-bindsym w workspace number $10
-bindsym e workspace number $Work
+bindsym w workspace number $Reading
+bindsym e workspace number $Media
+bindsym y workspace number $Youtube
 bindsym Return mode "default"
 bindsym Escape mode "default"
 bindsym $mod+semicolon mode "default"

@@ -143,5 +143,3 @@ export MPD_PORT=6969
 export EDITOR=nvim
 
 
-# Load Angular CLI autocompletion.
-source <(ng completion script)
