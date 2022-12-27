@@ -127,7 +127,7 @@ bindsym $mod+4 workspace number $IRC
 bindsym $mod+5 workspace number $Media
 bindsym $mod+6 workspace number $Reading
 bindsym $mod+7 workspace number $Youtube
-bindsym $mod+c workspace number $Reading
+bindsym $mod+c workspace number $Notes
 bindsym $mod+8 workspace number $Steam
 bindsym $mod+g workspace number $Game
 bindsym $mod+9 workspace number $Vm
