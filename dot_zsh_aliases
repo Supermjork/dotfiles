@@ -286,7 +286,7 @@ alias nomnom='killall'
 
 alias byes='exit'
 alias cya='reboot'
-alias kthxbai='halt'
+alias kthxbai='shutdown now'
 
 alias pwned='ssh'
 

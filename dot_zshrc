@@ -140,6 +140,6 @@ export PATH=$PATH:/home/libkyy/.spicetify:/home/libkyy/.cargo/bin:/usr/local/tex
 export TERMINAL=kitty
 export MPD_HOST=127.0.0.1
 export MPD_PORT=6969
-export EDITOR=nvim
+export EDITOR=vim
 
 
