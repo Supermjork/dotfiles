@@ -136,8 +136,10 @@ then
     cat NEXT_TO_RUN
 fi
 export PATH=$PATH:/sbin/
-export PATH=$PATH:/home/libkyy/.spicetify:/home/libkyy/.cargo/bin:/usr/local/texlive/2022/bin/x86_64-linux
-export PATH=$PATH:/home/libkyy/.local/share/flutter/bin
+export PATH=$PATH:$HOME/.spicetify:/home/libkyy/.cargo/bin:/usr/local/texlive/2022/bin/x86_64-linux
+export PATH=$PATH:$HOME/.local/share/flutter/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export TERMINAL=kitty
 export MPD_HOST=127.0.0.1
 export MPD_PORT=6969
@@ -149,3 +151,52 @@ function reload_gtk_theme() {
   sleep 1
   gsettings set org.gnome.desktop.interface gtk-theme $theme
 }
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+###-begin-flutter-completion-###
+
+if type complete &>/dev/null; then
+  __flutter_completion() {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           flutter completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -F __flutter_completion flutter
+elif type compdef &>/dev/null; then
+  __flutter_completion() {
+    si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 flutter completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef __flutter_completion flutter
+elif type compctl &>/dev/null; then
+  __flutter_completion() {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       flutter completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K __flutter_completion flutter
+fi
+
+###-end-flutter-completion-###
+
+## Generated 2023-02-10 19:53:12.722758Z
+## By /home/libkyy/.local/share/flutter/bin/cache/flutter_tools.snapshot

@@ -231,6 +231,9 @@ local config = {
       ["andweeb/presence.nvim"] = {},
       ["tpope/vim-fugitive"] = {},
       ["lervag/vimtex"] = {},
+      ["akinsho/flutter-tools.nvim"] = {
+        require = "nvim-lua/plenary.nvim",
+      },
       ["chipsenkbeil/distant.nvim"] = {
         config = function()
           require('distant').setup {
