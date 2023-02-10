@@ -136,7 +136,6 @@ then
     cat NEXT_TO_RUN
 fi
 export PATH=$PATH:/sbin/
-<<<<<<< Updated upstream
 export PATH=$PATH:$HOME/.spicetify:/home/libkyy/.cargo/bin:/usr/local/texlive/2022/bin/x86_64-linux
 export PATH=$PATH:$HOME/.local/share/flutter/bin
 export ANDROID_HOME=$HOME/Android/Sdk
