@@ -137,7 +137,7 @@ then
 fi
 export PATH=$PATH:/sbin/
 export PATH=$PATH:/home/libkyy/.spicetify:/home/libkyy/.cargo/bin:/usr/local/texlive/2022/bin/x86_64-linux
-export PATH=$PATH:/home/libkyy/bin/flutter/bin
+export PATH=$PATH:/home/libkyy/.local/share/flutter/bin
 export TERMINAL=kitty
 export MPD_HOST=127.0.0.1
 export MPD_PORT=6969
