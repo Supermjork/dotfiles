@@ -1,0 +1,298 @@
+" Light backgrounds hurt my eyes.
+set background=dark
+let mapleader = " "
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+
+" I speel gud, but I mkae tyops all the tiem.
+set spelllang=en_gb
+
+" VI est mortuus. Vim vivat.
+set nocompatible
+
+" May as well...
+set mouse=a
+set clipboard=unnamedplus
+
+" Syntax coloring is a set of guideposts.
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+
+set synmaxcol=255
+
+set grepprg=grep\ -nH\ $*
+if filereadable("/usr/bin/rg")
+	set grepprg=rg\ --vimgrep
+	set grepformat^=%f:%l:%c:%m
+endif
+
+
+" 4-column tabs is the One True Way.
+set ts=4 sw=4 sts=4
+
+" ... But some people have a hard time being consistent.
+set list listchars=tab:>-,trail:-
+" I can't count.
+set number
+
+" Fold settings {{{
+set foldenable
+set foldclose=all " Close folds if you leave them in any way
+set foldcolumn=1 " Show the foldcolumn
+set foldlevel=0 " Autofold everything by default
+set foldmethod=marker " fold on markers
+set foldnestmax=3
+set foldopen=all " Open folds if you touch them in any way
+" }}}
+
+" Convenience makes my fingers happy.
+map <F8> <ESC>:silent make\|cwindow\|redraw!<cr>
+imap <F8> <ESC>:silent make\|cwindow\|redraw!<cr>a
+" map <F12> <ESC>:cn<CR>
+nmap <leader>g :silent !grunt hogan coffee less<CR><C-L>
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" I'm forgetful.
+set history=1000
+
+" This keeps me centered.
+set scrolloff=3
+
+" Helps me find things.
+set ruler
+set showmatch
+set incsearch
+set hlsearch
+
+" This was before I found out about \c
+set smartcase
+
+" My, that bottom bar can get cluttered...
+set shortmess=atI
+set noshowmode
+
+
+set expandtab
+
+set wildmenu
+
+" language-specific settings {{{
+autocmd filetype python set expandtab
+autocmd filetype pony set expandtab
+autocmd filetype php set expandtab
+autocmd filetype coffee set expandtab
+autocmd filetype mustache set expandtab
+autocmd filetype pony set expandtab
+
+augroup nemerle
+	au!
+	autocmd BufNewFile,BufReadPre *.n
+		\ set fencs=ucs-bom,utf-8,iso-8859-2 fenc=utf-8
+augroup END
+" }}}
+
+augroup Binary
+	au!
+	au BufReadPre   *.bin let &bin=1
+	au BufReadPost  *.bin if &bin | %!xxd
+	au BufReadPost  *.bin set ft=xxd | endif
+	au BufWritePre  *.bin if &bin | %!xxd -r
+	au BufWritePre  *.bin endif
+	au BufWritePost *.bin if &bin | %!xxd
+	au BufWritePost *.bin set nomod | endif
+augroup END
+
+" cscope seems to work a little better than ctags, but Vim doesn't auto-load
+" cscope files like it does ctags files.
+if has("cscope")
+	set cst
+	set csto=0
+	set nocsverb
+	if filereadable("cscope.out")
+		cs add cscope.out
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+	set csverb
+
+	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+endif
+
+set tags=./tags,tags
+
+let ComniCpp_MayCompleteDot=1
+let ComniCpp_MayCompleteArrow=1
+let ComniCpp_MayCompleteScope=1
+
+set completeopt=longest,menu
+
+" Search paths for completions.
+" Starting with local files and the default includes
+set path+=**,/usr/include
+" KDE-specific
+set path+=/usr/include/KDE,/usr/include/qt4
+" boost
+set path+=/usr/include/boost
+
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor = "latex"
+let g:clang_library_path = '/usr/lib'
+let g:clang_auto_select = 1
+let g:clang_complete_auto = 1
+let g:clang_complete_macros = 1
+
+let g:proj_flags='imstS'
+let g:ale_completion_enabled = 1
+"set omnifunc=ale#completion#OmniFunc
+
+" I often forget to use sudoedit. Much to my chagrin.
+cmap w!! %!sudo tee > /dev/null %
+
+" Plugins {{{
+" note:  run :PlugUpgrade | PlugInstall | PlugUpdate
+call plug#begin('~/.vim/plugged')
+
+"" if these are uncommented I started working with C :(
+" Plug 'Rip-Rip/clang_complete', { 'for': ['cpp', 'cpp11', 'c'], 'do': 'make install' }
+" Plug 'vim-scripts/ctx'
+
+" I don't need NERDTree
+Plug 'ctrlpvim/ctrlp.vim'
+" Make things look pretty
+Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'jaxbot/semantic-highlight.vim'
+" Sessions
+Plug 'shemerey/vim-project'
+Plug 'tpope/vim-surround'
+"I like ALE but it doesn't like me :(
+Plug 'dense-analysis/ale'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'rhysd/vim-lsp-ale'
+"Snippets because I am lazy
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
+"Rust my beloved
+Plug 'rust-lang/rust.vim'
+"Lamtex Rabbit hole
+Plug 'lervag/vimtex'
+"Personal wiki?
+Plug 'vimwiki/vimwiki'
+
+
+call plug#end()
+" Vimtex shi
+let g:vimtex_view_method = 'zathura'
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_fixers = {
+    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\   'rust': ['rustfmt'],
+\}
+let g:rustfmt_autosave = 1
+let g:rust_clip_command = 'xclip -selection clipboard'
+
+"let g:ale_linters = {'rust': ['rust-analyzer', 'cargo']}
+let g:ale_fix_on_save = 1
+
+" Tab Completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+"let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/public_html/'}]
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" }}}
+
+au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
+
+au BufNewFile,BufRead *.cpp set syntax=cpp11
+au BufNewFile,BufRead *.hpp set syntax=cpp11
+au BufNewFile,BufRead *.mustache set ft=html
+
+" Everything else looks like crap.
+colorscheme gruvbox
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16_gruvbox_dark_hard'
+"{{{ unicode symbols
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.crypt = '🔒'
+"let g:airline_symbols.linenr = '☰'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.maxlinenr = ''
+"let g:airline_symbols.maxlinenr = '㏑'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.spell = 'Ꞩ'
+"let g:airline_symbols.notexists = 'Ɇ'
+"let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_powerline_fonts = 1
+let g:wintabs_powerline_arrow_left = " \u25c0 "
+let g:wintabs_powerline_sep_tab_transition = "\ue0b2"
+let g:wintabs_powerline_sep_buffer = "\ue0b1"
+let g:wintabs_powerline_sep_tab_transition = "\ue0b2"
+highlight link WintabsEmpty TabLineFill
+"}}}

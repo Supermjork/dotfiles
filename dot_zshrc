@@ -143,4 +143,9 @@ export MPD_HOST=127.0.0.1
 export MPD_PORT=6969
 export EDITOR=nvim
 
-
+function reload_gtk_theme() {
+  theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
+  gsettings set org.gnome.desktop.interface gtk-theme ''
+  sleep 1
+  gsettings set org.gnome.desktop.interface gtk-theme $theme
+}
