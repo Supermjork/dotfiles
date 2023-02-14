@@ -226,6 +226,7 @@ let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \   'rust': ['rustfmt'],
+\ 	'dart': ['dartfmt'],
 \}
 let g:rustfmt_autosave = 1
 let g:rust_clip_command = 'xclip -selection clipboard'
