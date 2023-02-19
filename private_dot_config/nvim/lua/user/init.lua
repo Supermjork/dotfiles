@@ -210,6 +210,9 @@ local config = {
       -- ["<C-s>"] = { "<cmd>:w!<cr>", desc = "Save File" },  -- change description but the same command
       ["<leader>cp"] = { "<cmd>Copilot panel<cr>", desc = "Copilot panel"},
       ["<leader>Lll"] = { "<cmd>VimtexCompile<cr>", desc = "Live compiling"},
+      ["<leader>cd"] = {function() require("duck").hatch("🦀") end, desc = "duck hatch"},
+      ["<leader>ck"] = {function() require("duck").cook() end, desc = "duck cook"},
+      ["<leader>ca"] = {function() vim.lsp.buf.code_action() end, desc = "Code action"},
     },
     t = {
       -- setting a mapping to false will disable it
@@ -232,20 +235,9 @@ local config = {
       ["tpope/vim-fugitive"] = {},
       ["lervag/vimtex"] = {},
       ["akinsho/flutter-tools.nvim"] = {
-        require = "nvim-lua/plenary.nvim",
+        requires = "nvim-lua/plenary.nvim",
       },
-      ["chipsenkbeil/distant.nvim"] = {
-        config = function()
-          require('distant').setup {
-      -- Applies Chip's personal settings to every machine you connect to
-      --
-      -- 1. Ensures that distant servers terminate with no connections
-      -- 2. Provides navigation bindings for remote directories
-      -- 3. Provides keybinding to jump into a remote file's parent directory
-      ['*'] = require('distant.settings').chip_default()
-    }
-  end
-      }
+      ["tamton-aquib/duck.nvim"] = {},
 
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
@@ -362,7 +354,7 @@ local config = {
           -- third key is the key to bring up next level and its displayed
           -- group name in which-key top level menu
           ["b"] = { name = "Buffer" },
-          ["c"] = { name = "Crime"},
+          ["c"] = { name = "Code Stuff"},
           ["L"] = { name = "LaTEX"}
         },
       },
