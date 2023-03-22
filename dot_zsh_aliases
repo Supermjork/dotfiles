@@ -300,4 +300,7 @@ alias yolo='git commit -m "$(curl https://whatthecommit.com/index.txt)"'
 alias letcat='git checkout'
 alias violenz='git rebase'
 alias ani-cli='ani-cli -q 480'
+alias anaconda='source ~/.zsh_anaconda'
+export GTF_JAVA_SG="$PWD"
+alias generate_java_project="\$GTF_JAVA_SG/generate_java_project"
 

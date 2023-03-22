@@ -62,6 +62,7 @@ local config = {
       neovide_remember_window_size = true,
       neovide_fullscreen = true,
       spell_lang = "en_gb", -- set spellcheck language
+      python3_host_prog='/home/libkyy/bin/anaconda3/envs/jewpidor/bin/python',
     },
   },
   
@@ -125,6 +126,7 @@ local config = {
       treesitter = true,
       vimwiki = false,
       ["which-key"] = true,
+      ["null-ls"] = false,
     },
   },
 
@@ -139,7 +141,7 @@ local config = {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "rust_analyzer"
+      "rust_analyzer",
     },
     formatting = {
       -- control auto formatting on save
@@ -213,6 +215,9 @@ local config = {
       ["<leader>cd"] = {function() require("duck").hatch("🦀") end, desc = "duck hatch"},
       ["<leader>ck"] = {function() require("duck").cook() end, desc = "duck cook"},
       ["<leader>ca"] = {function() vim.lsp.buf.code_action() end, desc = "Code action"},
+      ["<leader>jr"] = { "<cmd>MagmaEvaluateOperator<CR>", desc = "Evaluate Operator"},
+      ["<leader>jrr"] = { "<cmd>MagmaEvaluateLine<CR>", desc = "Evaluate Line"},
+      ["<leader>jo"] = { "<cmd>MagmaShowOutput<CR>", desc = "Show output"},
     },
     t = {
       -- setting a mapping to false will disable it
@@ -242,6 +247,8 @@ local config = {
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
       -- { "andweeb/presence.nvim" },
+      { "meatballs/notebook.nvim" },
+      { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' },
       -- {
       --   "ray-x/lsp_signature.nvim",
       --   event = "BufRead",
@@ -355,7 +362,8 @@ local config = {
           -- group name in which-key top level menu
           ["b"] = { name = "Buffer" },
           ["c"] = { name = "Code Stuff"},
-          ["L"] = { name = "LaTEX"}
+          ["L"] = { name = "LaTEX"},
+          ["j"] = { name = "Jew Pidor"},
         },
       },
     },
@@ -378,6 +386,7 @@ local config = {
     --   },
     -- }
   end,
+  require('notebook')
 }
 
 return config
