@@ -170,10 +170,9 @@ let g:clang_library_path = '/usr/lib'
 let g:clang_auto_select = 1
 let g:clang_complete_auto = 1
 let g:clang_complete_macros = 1
-
 let g:proj_flags='imstS'
-let g:ale_completion_enabled = 1
-"set omnifunc=ale#completion#OmniFunc
+set completeopt=menu,menuone,preview,noselect,noinsert
+set omnifunc=ale#completion#OmniFunc
 
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
@@ -200,10 +199,6 @@ Plug 'tpope/vim-surround'
 "I like ALE but it doesn't like me :(
 Plug 'dense-analysis/ale'
 Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'rhysd/vim-lsp-ale'
 "Snippets because I am lazy
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -220,19 +215,6 @@ call plug#end()
 " Vimtex shi
 let g:vimtex_view_method = 'zathura'
 
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'rust': ['rustfmt'],
-\ 	'dart': ['dartfmt'],
-\}
-let g:rustfmt_autosave = 1
-let g:rust_clip_command = 'xclip -selection clipboard'
-
-"let g:ale_linters = {'rust': ['rust-analyzer', 'cargo']}
-let g:ale_fix_on_save = 1
 
 " Tab Completion
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -248,7 +230,6 @@ au Syntax * RainbowParenthesesLoadBraces
 
 au BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window 'vim | " . expand("%:t") . "'")
 
-au BufNewFile,BufRead *.cpp set syntax=cpp11
 au BufNewFile,BufRead *.hpp set syntax=cpp11
 au BufNewFile,BufRead *.mustache set ft=html
 

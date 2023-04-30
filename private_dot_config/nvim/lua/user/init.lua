@@ -243,12 +243,12 @@ local config = {
         requires = "nvim-lua/plenary.nvim",
       },
       ["tamton-aquib/duck.nvim"] = {},
+      ["mfussenegger/nvim-dap"] = {},
+      ["mfussenegger/nvim-jdtls"] = {},
 
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
       -- { "andweeb/presence.nvim" },
-      { "meatballs/notebook.nvim" },
-      { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' },
       -- {
       --   "ray-x/lsp_signature.nvim",
       --   event = "BufRead",
@@ -386,7 +386,6 @@ local config = {
     --   },
     -- }
   end,
-  require('notebook')
 }
 
 return config

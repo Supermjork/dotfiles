@@ -1,0 +1,5 @@
+# pack-refs with: peeled fully-peeled sorted 
+7e141c2b7be0f2600276004fd2e7382a3fa0f690 refs/remotes/origin/master
+e840c16462387f4e8c5ae3434fad178cbc1dad7f refs/remotes/origin/revert-43-master
+2f180a2860dc36d3fff44cd8348da5061651970e refs/remotes/origin/revert-56-master
+7ba913ab99432f1fb55ae46240bfa61bab330f1a refs/remotes/origin/revert-77-scala
