@@ -6,7 +6,6 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \ 	'dart': ['dartfmt'],
 \}
-let g:ale_rust_analyzer_executable = '/home/linly/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rust-analyzer'
 let g:ale_linters = {'rust': ['cargo', 'analyzer']}
 let g:rustfmt_autosave = 1
 let g:rust_clip_command = 'xclip -selection clipboard'

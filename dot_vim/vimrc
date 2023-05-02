@@ -154,7 +154,6 @@ let ComniCpp_MayCompleteDot=1
 let ComniCpp_MayCompleteArrow=1
 let ComniCpp_MayCompleteScope=1
 
-set completeopt=longest,menu
 
 " Search paths for completions.
 " Starting with local files and the default includes
@@ -172,10 +171,11 @@ let g:clang_complete_auto = 1
 let g:clang_complete_macros = 1
 let g:proj_flags='imstS'
 set completeopt=menu,menuone,preview,noselect,noinsert
-set omnifunc=ale#completion#OmniFunc
-
+let g:ale_completion_enabled = 1
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
+
+let g:snipMate = { 'snippet_version' : 1 }
 
 " Plugins {{{
 " note:  run :PlugUpgrade | PlugInstall | PlugUpdate
@@ -187,6 +187,7 @@ call plug#begin('~/.vim/plugged')
 
 " I don't need NERDTree
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 " Make things look pretty
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline-themes'
@@ -198,11 +199,10 @@ Plug 'shemerey/vim-project'
 Plug 'tpope/vim-surround'
 "I like ALE but it doesn't like me :(
 Plug 'dense-analysis/ale'
-Plug 'prabirshrestha/vim-lsp'
 "Snippets because I am lazy
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'rafamadriz/friendly-snippets'
+Plug 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 "Rust my beloved
 Plug 'rust-lang/rust.vim'
 "Lamtex Rabbit hole
@@ -219,7 +219,6 @@ let g:vimtex_view_method = 'zathura'
 " Tab Completion
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 "let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/public_html/'}]
 
 au VimEnter * RainbowParenthesesToggle
