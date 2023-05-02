@@ -172,6 +172,7 @@ let g:clang_complete_macros = 1
 let g:proj_flags='imstS'
 set completeopt=menu,menuone,preview,noselect,noinsert
 let g:ale_completion_enabled = 1
+set omnifunc=ale#completion#OmniFunc
 " I often forget to use sudoedit. Much to my chagrin.
 cmap w!! %!sudo tee > /dev/null %
 
