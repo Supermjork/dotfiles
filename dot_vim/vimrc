@@ -34,7 +34,7 @@ set ts=4 sw=4 sts=4
 " ... But some people have a hard time being consistent.
 set list listchars=tab:>-,trail:-
 " I can't count.
-set number
+set relativenumber
 
 " Fold settings {{{
 set foldenable
@@ -70,6 +70,8 @@ set ruler
 set showmatch
 set incsearch
 set hlsearch
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :noh<CR><CR>
 
 " This was before I found out about \c
 set smartcase
