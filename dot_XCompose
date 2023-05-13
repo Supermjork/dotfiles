@@ -59,7 +59,8 @@ include "%L"
 <Multi_key> <g> <f> : "φ"    U03C6    # GREEK SMALL LETTER PHI
 <Multi_key> <g> <x> : "χ"    U03C7    # GREEK SMALL LETTER CHI
 <Multi_key> <g> <o> : "ω"    U03C9    # GREEK SMALL LETTER OMEGA
-<Multi_key> <x> <b> : "x̄"     
+<Multi_key> <x> <b> : "x̄"
+<Multi_key> <s> <u> <s> : "ඞ" # amogus
 
 # doubles (additional stroke <q>)
 <Multi_key> <g> <q> <t> : "θ"    U03B8    # GREEK SMALL LETTER THETA
