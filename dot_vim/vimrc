@@ -1,5 +1,5 @@
 " Light backgrounds hurt my eyes.
-set background=dark
+set background=light
 let mapleader = " "
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
 
@@ -240,7 +240,7 @@ au BufNewFile,BufRead *.mustache set ft=html
 " Everything else looks like crap.
 colorscheme gruvbox
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16_gruvbox_dark_hard'
+let g:airline_theme='base16_gruvbox_light_hard'
 "{{{ unicode symbols
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
