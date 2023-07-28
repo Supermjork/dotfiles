@@ -35,6 +35,7 @@ set ts=4 sw=4 sts=4
 set list listchars=tab:>-,trail:-
 " I can't count.
 set relativenumber
+set number
 
 " Fold settings {{{
 set foldenable
@@ -81,7 +82,7 @@ set shortmess=atI
 set noshowmode
 
 
-set expandtab
+set noexpandtab
 
 set wildmenu
 

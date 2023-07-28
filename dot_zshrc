@@ -206,4 +206,5 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 #anaconda slows shit down D:<<<<
 export PATH=$PATH:~/.spicetify
+export PATH=$PATH:/home/libkyy/.spicetify
 export PATH=$PATH:~/.emacs.d/bin
